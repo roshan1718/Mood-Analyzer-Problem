@@ -1,12 +1,11 @@
 package com.bridgelabz.moodAnalyzer;
-
+import com.bridgelabz.moodAnalyzer.MoodAnalyserFactory;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class MoodAnalyzerTestClass {
     //CREATE OBJECT OF MOODANALYZER CLASS
     MoodAnalyzer mood=new MoodAnalyzer();
-
     @Test
     public void givenMeassage_WhenValid_ThenReturnMood() throws MoodAnalysisException {
         MoodAnalyzer mood=new MoodAnalyzer("I am in sad mood");
@@ -39,4 +38,16 @@ public class MoodAnalyzerTestClass {
             Assert.assertEquals(MoodAnalysisException.MyException_Type.EMPTY,e.type);
         }
     }
+    @Test
+    public void givenMoodAnaliserDefaultCustructor_WhenProper_ThenReturnObject() {
+        try{
+            MoodAnalyzer mood = new MoodAnalyzer();
+            MoodAnalyzer analyzemood = MoodAnalyserFactory.createMoodAnalyzer();
+            boolean result = analyzemood.equals(mood);
+            Assert.assertEquals(true,result);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }
