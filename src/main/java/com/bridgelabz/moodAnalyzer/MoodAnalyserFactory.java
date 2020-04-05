@@ -12,7 +12,7 @@ public class MoodAnalyserFactory {
         } catch (ClassNotFoundException e){
             throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.CLASS_NOT_FOUND,"Please enter valid Class neme");
         } catch (NoSuchMethodException e){
-            throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method neme");
+            throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method name");
         }
     }
     // Return constructor instance
@@ -22,10 +22,11 @@ public class MoodAnalyserFactory {
             Constructor<?> moodConstructor = moodAnalyzer.getConstructor();
             Object instance = moodConstructor.newInstance();
             return (MoodAnalyzer) instance;
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+
         }catch (ClassNotFoundException e){
             throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.CLASS_NOT_FOUND,"Please enter valid Class neme");
+        } catch (NoSuchMethodException e) {
+            throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid Class neme");
         }catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
