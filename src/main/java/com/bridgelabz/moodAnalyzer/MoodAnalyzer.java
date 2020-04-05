@@ -1,6 +1,6 @@
 package com.bridgelabz.moodAnalyzer;
 import java.util.Objects;
-import com.bridgelabz.moodAnalyzer.MoodAnalyzerTestClass;
+import com.bridgelabz.moodAnalyzer.*;
 public class MoodAnalyzer {
     private String message;
     public static void main(String[] args) {
@@ -8,7 +8,7 @@ public class MoodAnalyzer {
         MoodAnalyzer moodAnalyzerObject=new MoodAnalyzer();
     }
     // Method that return the mood
-    public String moodAnalyzer(String mood) throws MoodAnalysisException {
+    public String moodAnalyzer() throws MoodAnalysisException {
         try {
             if(message.length()==0){
                 throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.EMPTY,"You entered empty,please enter valid mood");
@@ -21,7 +21,7 @@ public class MoodAnalyzer {
         }catch (NullPointerException e){
             throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.NULL,"You entered null,please enter valid mood");
         }
-        return (mood);
+        return (null);
     }
     // Default constructor
     public MoodAnalyzer() {

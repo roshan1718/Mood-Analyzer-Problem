@@ -3,7 +3,14 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 public class MoodAnalyserFactory {
-
+    public static String moodAnalyzer(MoodAnalyzer message,String methodName) throws MoodAnalysisException {
+        try {
+            return (String)message.getClass().getMethod(methodName).invoke(message);
+        } catch (Exception e) {
+            //throw new MoodAnalysisException(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,"Please enter valid method name");
+        }
+        return null;
+    }
     // Return class object
     public static Constructor<?> getConstructor(String className,Class methodName) throws MoodAnalysisException {
         try {
