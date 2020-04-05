@@ -70,7 +70,7 @@ public class MoodAnalyzerTestClass {
     public void givenConstructorName_WhenImproper_ThenThrowMoodAnalysisException() {
         try{
             MoodAnalyzer mood = new MoodAnalyzer();
-            MoodAnalyserFactory.getConstructor("MoodAnalyzer",Integer.class);
+            MoodAnalyserFactory.getConstructor("com.bridgelabz.moodAnalyzer.MoodAnalyzer",Integer.class);
         }catch(MoodAnalysisException e){
             Assert.assertEquals(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,e.type);
         }
@@ -113,11 +113,24 @@ public class MoodAnalyzerTestClass {
     @Test
     public void givenHappy_WhenProper_ThenReturnHappyMood() throws MoodAnalysisException {
         try {
-            Constructor<?> constructor = MoodAnalyserFactory.getConstructor("MoodAnalyzer",String.class);
+            Constructor<?> constructor = MoodAnalyserFactory.getConstructor("com.bridgelabz.moodAnalyzer.MoodAnalyzer",String.class);
             Object instance = constructor.newInstance("i am in happy mood");
             String analyser = MoodAnalyserFactory.moodAnalyzer ( (MoodAnalyzer) instance ,"moodAnalyzer") ;
             Assert.assertEquals("happy",analyser);
         } catch (IllegalAccessException |InstantiationException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+    @Test
+    public void givenHappyMessage_WhenImproperMethod_ShouldThrowMoodAnalysisException() {
+        try {
+            Constructor<?> constructor = MoodAnalyserFactory.getConstructor("com.bridgelabz.moodAnalyzer.MoodAnalyzer",Integer.class);
+            Object instance = constructor.newInstance("i am in happy mood");
+            String analyser = MoodAnalyserFactory.moodAnalyzer ( (MoodAnalyzer) instance ,"moodAnalyzer") ;
+            Assert.assertEquals("happy",analyser);
+        }catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.MyException_Type.METHOD_NOT_FOUND,e.type);
+        } catch (IllegalAccessException |InstantiationException |InvocationTargetException  e ) {
             e.printStackTrace();
         }
     }
